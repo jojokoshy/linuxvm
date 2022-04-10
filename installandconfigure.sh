@@ -1,9 +1,24 @@
 #!/bin/bash
-apt-get -y update
+sudo apt-get -y update
 echo 'updated OS'
 # install Apache2
-apt-get --assume-yes install tgt lvm2
+sudo apt-get --assume-yes install tgt lvm2
 echo 'installed software'
+ 
+echo 'sleep 1 minute'
+
+sleep 1m
+
+echo 'finished sleeping'
+
+echo 'restarting services '
+
+service tgt restart
+systemctl restart tgt
+service tgt status
+echo 'restarted services '
+
+
 sudo pvcreate /dev/sd{c,d}
 echo 'pv created'
 
