@@ -13,20 +13,20 @@ echo 'finished sleeping'
 
 echo 'restarting services '
 
-service tgt restart
-systemctl restart tgt
-service tgt status
+sudo service tgt restart
+sudo systemctl restart tgt
+sudo service tgt status
 echo 'restarted services '
 
 
 sudo pvcreate /dev/sd{c,d}
 echo 'pv created'
 
-vgcreate jk_iscsi /dev/sd{c,d}
+sudo vgcreate jk_iscsi /dev/sd{c,d}
 
 echo 'volume created '
 
-lvcreate -l 100%FREE -n jk-1_lun1 jk_iscsi
+sudo lvcreate -l 100%FREE -n jk-1_lun1 jk_iscsi
 
 echo 'logical volume created '
 
