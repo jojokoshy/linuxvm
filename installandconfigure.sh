@@ -1,4 +1,7 @@
 #!/bin/bash
+
+echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+
 sudo apt-get -y update
 echo 'updated OS'
 # install Apache2
@@ -19,10 +22,13 @@ sudo service tgt status
 echo 'restarted services '
 
 
-sudo pvcreate /dev/sd{c,d}
+sudo pvcreate /dev/sdc
+sudo pvcreate /dev/sdd
+
 echo 'pv created'
 
 sudo vgcreate jk_iscsi /dev/sd{c,d}
+
 
 echo 'volume created '
 
