@@ -3,11 +3,18 @@ apt-get -y update
 
 # install Apache2
 apt-get --assume-yes install tgt lvm2
+echo 'installed softare'
+sudo pvcreate /dev/sd{c,d}
+echo 'pv created'
 
-pvcreate /dev/sd{c,d}
 vgcreate jk_iscsi /dev/sd{c,d}
 
+echo 'volume created '
+
 lvcreate -l 100%FREE -n jk-1_lun1 jk_iscsi
+
+echo 'logical volume created '
+
 cat << EOF >> /etc/tgt/conf.d/jk-1_iscsi.conf
 <target iqn.0jkepic.jk.com:lun1>
      # Provided device as an iSCSI target
@@ -17,5 +24,10 @@ cat << EOF >> /etc/tgt/conf.d/jk-1_iscsi.conf
 </target>
 EOF
 
+echo 'printed the file '
+
+
 service tgt restart
 systemctl restart tgt
+
+echo 'restarted services '
