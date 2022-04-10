@@ -22,8 +22,13 @@ sudo service tgt status
 echo 'restarted services '
 
 
-sudo pvcreate /dev/sdc
+DEBIAN_FRONTEND=noninteractive pvcreate /dev/sdc
+
+echo 'first pv created'
 sudo pvcreate /dev/sdd
+
+
+echo 'second pv created'
 
 echo 'pv created'
 
