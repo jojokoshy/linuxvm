@@ -1,9 +1,9 @@
 #!/bin/bash
 apt-get -y update
-
+echo 'updated OS'
 # install Apache2
 apt-get --assume-yes install tgt lvm2
-echo 'installed softare'
+echo 'installed software'
 sudo pvcreate /dev/sd{c,d}
 echo 'pv created'
 
