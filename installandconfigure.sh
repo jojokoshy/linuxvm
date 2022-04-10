@@ -16,9 +16,10 @@ echo 'restarting services '
 
 sudo service tgt restart
 sudo systemctl restart tgt
-sudo service tgt status
+ 
 echo 'restarted services '
 
+sudo parted /dev/sdc --script mklabel gpt mkpart xfspart xfs 0% 100%
 
 DEBIAN_FRONTEND=noninteractive pvcreate /dev/sd{c,d}
 
