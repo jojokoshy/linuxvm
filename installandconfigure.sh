@@ -20,6 +20,7 @@ sudo systemctl restart tgt
 echo 'restarted services '
 
 sudo parted /dev/sdc --script mklabel gpt mkpart xfspart xfs 0% 100%
+sudo parted /dev/sdd --script mklabel gpt mkpart xfspart xfs 0% 100%
 
 DEBIAN_FRONTEND=noninteractive pvcreate /dev/sd{c,d}
 
