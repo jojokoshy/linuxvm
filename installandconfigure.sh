@@ -8,11 +8,9 @@ echo 'updated OS'
 sudo apt-get --assume-yes install tgt lvm2
 echo 'installed software'
  
-echo 'sleep 1 minute'
 
-sleep 1m
 
-echo 'finished sleeping'
+ 
 
 echo 'restarting services '
 
@@ -22,13 +20,9 @@ sudo service tgt status
 echo 'restarted services '
 
 
-DEBIAN_FRONTEND=noninteractive pvcreate /dev/sdc
+DEBIAN_FRONTEND=noninteractive pvcreate /dev/sd{c,d}
 
-echo 'first pv created'
-sudo pvcreate /dev/sdd
-
-
-echo 'second pv created'
+ 
 
 echo 'pv created'
 
