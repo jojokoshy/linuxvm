@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+#echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 
 sudo apt-get -y update
 echo -e '\n updated OS'
