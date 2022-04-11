@@ -3,10 +3,10 @@
 echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 
 sudo apt-get -y update
-echo 'updated OS'
+echo -e '\n updated OS'
 # install Apache2
 sudo apt-get --assume-yes install tgt lvm2
-echo 'installed required software'
+echo -e '\n installed required software'
  
 
 
@@ -19,17 +19,17 @@ while read p; do   pvcreate "/dev/$p"; done <disknames.txt
 
  
 
-echo 'pv created successfully'
+echo -e '\n pv created successfully'
 
 while read p;do  disknames+=" /dev/$p"; done <disknames.txt
 
 vgcreate jk_iscsi $disknames
 
-echo 'volume created successfully'
+echo -e '\n volume created successfully'
 
 sudo lvcreate -l 100%FREE -n jk-1_lun1 jk_iscsi
 
-echo 'logical volume created '
+echo -e '\n logical volume created '
 
 cat << EOF >> /etc/tgt/conf.d/jk-1_iscsi.conf
 <target iqn.0jkepic.jk.com:lun1>
@@ -40,10 +40,10 @@ cat << EOF >> /etc/tgt/conf.d/jk-1_iscsi.conf
 </target>
 EOF
 
-echo 'printed the file '
+echo -e '\n printed the file '
 
 
 service tgt restart
 systemctl restart tgt
 
-echo 'restarted services '
+echo -e '\n restarted services '
