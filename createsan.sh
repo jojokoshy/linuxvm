@@ -2,10 +2,11 @@
 
 #echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 
-sudo apt-get -y update
+apt -y update 
+apt upgrade -y
 echo -e '\n updated OS'
 # install Apache2
-sudo apt-get --assume-yes install tgt lvm2
+apt install tgt lvm2 -y
 echo -e '\n installed required software'
  
 
@@ -31,6 +32,8 @@ echo -e '\n volume created successfully'
 sudo lvcreate -l 100%FREE -n jk-1_lun1 jk_iscsi
 
 echo -e '\n logical volume created '
+
+sleep 2m
 
 cat << EOF >> /etc/tgt/conf.d/jk-1_iscsi.conf
 <target iqn.0jkepic.jk.com:lun1>
