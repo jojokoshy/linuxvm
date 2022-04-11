@@ -11,24 +11,18 @@ echo 'installed software'
 
 
  
+lsblk --nodeps| awk '$4 ~ /G$/ && $4+0 >= 100 {print $1}' > disknames.txt
 
-echo 'restarting services '
+while read p; do   pvcreate "/dev/$p"; done <disknames.txt
 
-sudo service tgt restart
-sudo systemctl restart tgt
- 
-echo 'restarted services '
-
-sudo parted /dev/sdc --script mklabel gpt mkpart xfspart xfs 0% 100%
-sudo parted /dev/sdd --script mklabel gpt mkpart xfspart xfs 0% 100%
-
-DEBIAN_FRONTEND=noninteractive pvcreate /dev/sd{c,d}
+#DEBIAN_FRONTEND=noninteractive pvcreate /dev/sd{c,d}
 
  
 
 echo 'pv created'
 
-sudo vgcreate jk_iscsi /dev/sd{c,d}
+while read p; do   vgcreate jk_iscsi "/dev/$p"; done <disknames.txt
+
 
 
 echo 'volume created '
