@@ -21,6 +21,7 @@ while read p; do   pvcreate "/dev/$p"; done <disknames.txt
 
 echo -e '\n pv created successfully'
 
+disknames=''
 while read p;do  disknames+=" /dev/$p"; done <disknames.txt
 
 vgcreate jk_iscsi $disknames
